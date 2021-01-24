@@ -17,11 +17,9 @@ class UsuarioController {
         return res.status(400).json({ status: "ERROR" });
       }
 
-      if (body.senhaWord !== "123456") {
-        return res.status(400).json({ status: "ERROR" });
-      }
-
-
+      // if (body.senhaWord !== "123456") {
+      //   return res.status(400).json({ status: "ERROR" });
+      // }
 
       res.status(200).json({ status: "OK" });
     } catch (e) {
