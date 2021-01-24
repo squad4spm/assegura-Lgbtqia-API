@@ -3,6 +3,7 @@ var app = express();
 var routerPost = express.Router();
 var PostController = require("../controllers/PostController");
 
+routerPost.get("/cat/:idCat", PostController.getAllPostsCat);
 routerPost.patch("/:id", PostController.update);
 routerPost.get("/:id", PostController.getOne);
 routerPost.delete("/:id", PostController.delete);

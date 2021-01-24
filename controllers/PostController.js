@@ -41,9 +41,28 @@ class HomeController {
     }
   }
 
+  async getAllPostsCat(req, res) {
+    const { params } = req;
+
+    try {
+      const posts = await knex("posts")
+      .join("categorias", "posts.categoria_id", "categorias.id")
+      .select("*",  "categorias.nome as categoria")
+      .where("categoria_id", params.idCat);
+
+      res.status(200).json({ status: "OK", posts: posts });
+    } catch (e) {
+      console.log(e);
+
+      res.status(400).json({ status: "ERROR" });
+    }
+  }
+
   async getAll(req, res) {
     try {
-      const posts = await knex.select().table("posts");
+      const posts = await knex("posts")
+        .join("categorias", "posts.categoria_id", "categorias.id")
+        .select("posts.id", "posts.title", "categorias.nome as categoria");
 
       res.status(200).json({ status: "OK", posts });
     } catch (e) {
@@ -57,7 +76,20 @@ class HomeController {
     const { params } = req;
 
     try {
-      const post = await knex("posts").where("id", params.id);
+      // const post = await knex("posts").where("id", params.id);
+
+      const post = await knex("posts")
+        .join("categorias", "posts.categoria_id", "categorias.id")
+        .select(
+          "posts.id",
+          "posts.title",
+          "posts.content",
+          "posts.link",
+          "posts.image",
+          "posts.categoria_id",
+          "categorias.nome as categoria"
+        )
+        .where("posts.id", params.id);
 
       res.status(200).json({ status: "OK", post: post });
     } catch (e) {
