@@ -1,6 +1,6 @@
 var knex = require("../database/connection");
 
-class HomeController {
+class PostController {
   //metodos
   async index(req, res) {
     res.send("API EXPRESS - Rotas de Posts");
@@ -114,4 +114,4 @@ class HomeController {
   }
 }
 
-module.exports = new HomeController();
+module.exports = new PostController();
