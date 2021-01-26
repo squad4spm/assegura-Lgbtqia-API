@@ -29,6 +29,7 @@ class PostController {
         content: body.content ? body.content : null,
         image: body.image ? body.image : null,
         link: body.link ? body.link : null,
+        categoria_id: body.categoria_id ? body.categoria_id : null,
       };
 
       await knex("posts").where("id", params.id).update(data);
