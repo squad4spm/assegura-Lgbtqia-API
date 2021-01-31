@@ -12,7 +12,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json
 app.use(bodyParser.json());
 // cors
-app.use(cors());
+app.use(cors({
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "access-control-allow-origin",
+          "value": "*"
+        }
+      ]
+    }
+  ]
+}));
 
 app.use("/", router);
 app.use("/post", routerPost);
