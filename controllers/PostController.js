@@ -7,9 +7,11 @@ class PostController {
   }
 
   async create(req, res) {
-    const { body } = req;
+
+    const {body} = req
 
     try {
+
       await knex("posts").insert(body);
 
       res.status(200).json({ status: "OK" });
@@ -47,9 +49,9 @@ class PostController {
 
     try {
       const posts = await knex("posts")
-      .join("categorias", "posts.categoria_id", "categorias.id")
-      .select("*",  "categorias.nome as categoria")
-      .where("categoria_id", params.idCat);
+        .join("categorias", "posts.categoria_id", "categorias.id")
+        .select("*", "categorias.nome as categoria")
+        .where("categoria_id", params.idCat);
 
       res.status(200).json({ status: "OK", posts: posts });
     } catch (e) {
