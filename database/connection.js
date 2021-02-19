@@ -1,4 +1,5 @@
 var knex = require("knex")({
+  
   client: "mysql2",
   connection: {
     host: "mysql741.umbler.com",
@@ -7,6 +8,17 @@ var knex = require("knex")({
     password: "reCode323##",
     database: "recode_site",
   },
+
+  /*
+  client: "mysql2",
+    connection: {
+      host: "localhost",
+      user: "root",
+      //port: "3005",
+      password: "",
+      database: "assegura",
+    },
+  */
 });
 
 module.exports = knex;
